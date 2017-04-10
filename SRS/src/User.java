@@ -5,13 +5,14 @@ public class User
 	protected String userName;
 	protected String email;
 	protected String phone;
+	protected String password;
 	Profile profile;
 
-	User(String uN, String em, String p, Profile pf) {
+	User(String uN, String pw, String em, String p, Profile pf) {
 		userName = uN;
 		email = em;
 		phone = p;
-
+		password = pw;
 		profile = pf;
 	}
 
@@ -25,6 +26,16 @@ public class User
 			return "error: Wrong Type of contact info requested";
 		}
 
+	}
+	
+
+	public boolean checkPassword(String pass){
+		if (pass == password){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 }

@@ -1,8 +1,8 @@
 
 public class Driver extends User {
 
-	Driver(String uN, String em, String p, Profile pf) {
-		super(uN, em, p, pf);
+	Driver(String uN, String pw, String em, String p, Profile pf) {
+		super(uN, pw, em, p, pf);
 			}
 
 	public String[] displayRideRequest() {

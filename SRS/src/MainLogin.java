@@ -171,6 +171,12 @@ public class MainLogin {
 		backButton.setLocation(10, 50);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EM.setText("");
+				FirstName.setText("");
+				LastName.setText("");
+				Pass.setText("");
+				phonetext.setText("");
+				UN.setText("");
 				createMainLogin();
 			}
 		});

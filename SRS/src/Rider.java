@@ -2,8 +2,8 @@
 
 public class Rider extends User {
 
-	Rider(String uN, String em, String p, Profile pf) {
-		super(uN, em, p, pf);
+	Rider(String uN, String pw, String em, String p, Profile pf) {
+		super(uN, pw, em, p, pf);
 	}
 
 	public void requestRide() {
