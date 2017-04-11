@@ -1,5 +1,18 @@
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
-public class Profile {
+///Testing Dima git 1 
+
+public class Profile extends JFrame {
 	private String picture;
 	private String rating;
 	private String name;
@@ -8,13 +21,59 @@ public class Profile {
 	private String rate;
 	private String bio;
 	private String reviews;
+	JButton button;
+	JLabel label;
+	String s;
 	
-	public void UpdatePicture(){
-		//code needed
+	Profile(){
+		
+	super("Upload/Update Picture");
+	 button = new JButton("Upload");
+	 button.setBounds(80, 300, 100, 40);
+	 
+	 label = new JLabel();
+	 label.setBounds(10,10,300,550);
+	 button.addActionListener(new ActionListener(){
+	        @Override
+	     public void actionPerformed(ActionEvent e){
+	         JFileChooser fileChooser = new JFileChooser();
+	         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+	         FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg","gif","png");
+	         fileChooser.addChoosableFileFilter(filter);
+	         int result = fileChooser.showSaveDialog(null);
+	         if(result == JFileChooser.APPROVE_OPTION){
+	             File selectedFile = fileChooser.getSelectedFile();
+	             String path = selectedFile.getAbsolutePath();
+	             label.setIcon(ResizeImage(path));
+	             s = path;
+	              }
+	         else if(result == JFileChooser.CANCEL_OPTION){
+	             System.out.println("No Data");
+	         }
+	     }
+	    });
+	    add(label);
+	    add(button);
+	    setLayout(null);
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setSize(500,600);
+	    setVisible(true);
+	
+	}
+	 public ImageIcon ResizeImage(String imgPath){
+	        ImageIcon MyImage = new ImageIcon(imgPath);
+	        Image img = MyImage.getImage();
+	        Image newImage = img.getScaledInstance(label.getWidth(), label.getHeight(),Image.SCALE_SMOOTH);
+	        ImageIcon image = new ImageIcon(newImage);
+	        return image;
+	    }
+	
+	public void updatePicture(){
+	
 	}
 	public void updateRating(){
-		//code needed
-	}
+		
+    }
 	public void updateHours(String h){
 		this.hours = h;
 	}
