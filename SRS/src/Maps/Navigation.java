@@ -35,15 +35,18 @@ public class Navigation extends Application {
         ///System.out.println(_lon);
     }
     
-    public static void main(String[] args , double lat , double lon){
+    public static void main(double lat , double lon){
     	
-    	Browser.setLat(lat);
-    	Browser.setLon(lon);
+    	Browser.setOrigLat(lat);
+    	Browser.setOrigLon(lon);
     	
-        launch(args);
+        launch();
     }
     
-    public static void main(String[] args){
+    public static void main(String[] args , double origLat , double origLon , double destLat , double destLon){
+    	
+    	//Browser.setLat(lat);
+    	//Browser.setLon(lon);
     	
         launch(args);
     }
