@@ -13,6 +13,9 @@ class Browser extends Region {
 	
 	private static double _origLat = 0;
 	private static double _origLon = 0;
+	
+	private static double _destLat = 0;
+	private static double _destLon = 0;
  
     final WebView browser = new WebView();
     final WebEngine webEngine = browser.getEngine();
@@ -52,11 +55,11 @@ class Browser extends Region {
     }
     
     public static void setLat(double lat){
-    	_lat = lat;
+    	_origLat = lat;
     }
     
     public static void setLon(double lon){
-    	_lon = lon;
+    	_origLon = lon;
     }
     
 }
