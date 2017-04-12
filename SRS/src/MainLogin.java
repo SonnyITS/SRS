@@ -469,7 +469,7 @@ public class MainLogin {
 		
 		givenUN = UN.getText();
 		givenPW = Pass.getText();
-		if(DB.authentic(givenUN, givenPW, "driver")){
+		if(DB.authenticDriver(givenUN, givenPW)){
 			currentDriver = DB.getDriver(givenUN);
 			createUserInterFace();
 		}
@@ -485,7 +485,7 @@ public class MainLogin {
 		
 		givenUN = UN.getText();
 		givenPW = Pass.getText();
-		if(DB.authentic(givenUN, givenPW, "rider")){
+		if(DB.authenticRider(givenUN, givenPW)){
 			currentRider = DB.getRider(givenUN);
 			createUserInterFace();
 		}
