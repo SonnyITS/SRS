@@ -1,5 +1,7 @@
 import javax.swing.*;
 
+import Maps.*;
+
 ///Testing Ashim git 1
 
 import java.awt.event.ActionEvent;
@@ -39,6 +41,8 @@ public class MainLogin {
 	JButton nextButton2;
 	JButton nextButton3;
 	JButton nextButton4;
+	JButton mapButton;
+	JButton profileButton;
 	JLabel UserName;
 	JLabel tryAgain;
 	JLabel tryAgain2;
@@ -69,6 +73,7 @@ public class MainLogin {
 	String givenPW;
 	Driver currentDriver;
 	Rider currentRider;
+	Profile currentProfile;
 	
 	private Database DB = new Database(); 
 
@@ -159,6 +164,7 @@ public class MainLogin {
 				CreateUser2Page.remove(tryAgain5);
 				CreateUser2Page.remove(tryAgain6);
 				DriverLoginPage3.remove(tryAgain7);
+				RiderLoginPage3.remove(tryAgain7);
 				createMainLogin();
 			}
 		});
@@ -196,6 +202,28 @@ public class MainLogin {
 		nextButton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				next4clicked();
+			}
+		});
+
+		mapButton = new JButton("Map");
+		mapButton.setSize(150, 50);
+		mapButton.setLocation(10, 110);
+		mapButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//createCreateNewUser();
+				// go to map
+				Navigation.main((double)42.0 , (double)-71.5);
+			}
+		});
+		
+		profileButton = new JButton("Profile");
+		profileButton.setSize(150, 50);
+		profileButton.setLocation(10, 110);
+		profileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setToDefaults();
+				currentProfile.showProfile(login1);
+				// do something
 			}
 		});
 		
@@ -471,6 +499,7 @@ public class MainLogin {
 		givenPW = Pass.getText();
 		if(DB.authenticDriver(givenUN, givenPW)){
 			currentDriver = DB.getDriver(givenUN);
+			currentProfile = currentDriver.getProfile();
 			createUserInterFace();
 		}
 		else{
@@ -487,6 +516,7 @@ public class MainLogin {
 		givenPW = Pass.getText();
 		if(DB.authenticRider(givenUN, givenPW)){
 			currentRider = DB.getRider(givenUN);
+			currentProfile = currentRider.getProfile();
 			createUserInterFace();
 		}
 		else{
@@ -522,8 +552,7 @@ public class MainLogin {
 		login1.add(CreateUser2Page3);
 		login1.add(CreateUser2Page4);
 		login1.add(CreateUser2Page5);
-		
-		
+				
 	}
 
 	
@@ -558,12 +587,19 @@ public class MainLogin {
 	public void createUserInterFace(){
 		
 		login1.setTitle("UserInterFace");
-
-		
-		
-		setToDefaults();
 		UserInterFace1.add(userinterface);
+		UserInterFace4.add(profileButton);
+		UserInterFace5.add(mapButton);		
+		setToDefaults();
+		UserInterFace1.setVisible(true);
+		UserInterFace2.setVisible(true);
+		UserInterFace3.setVisible(true);
+		UserInterFace4.setVisible(true);
+		UserInterFace5.setVisible(true);
+		
 		login1.add(UserInterFace1);
+		login1.add(UserInterFace4);
+		login1.add(UserInterFace5);
 		
 		
 		
@@ -590,6 +626,11 @@ public class MainLogin {
 		CreateUser2Page3.setVisible(false);
 		CreateUser2Page4.setVisible(false);
 		CreateUser2Page5.setVisible(false);
+		UserInterFace1.setVisible(false);
+		UserInterFace2.setVisible(false);
+		UserInterFace3.setVisible(false);
+		UserInterFace4.setVisible(false);
+		UserInterFace5.setVisible(false);
 
 		MainLoginPage.setSize(500, 200);
 		MainLoginPage.setLocation(0, 0);

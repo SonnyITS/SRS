@@ -37,5 +37,9 @@ public class User
 			return false;
 		}
 	}
+	
+	public Profile getProfile(){
+		return profile;
+	}
 
 }

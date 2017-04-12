@@ -12,7 +12,7 @@ import java.io.InputStream;
 
 ///Testing Dima git 1 
 
-public class Profile extends JFrame {
+public class Profile {
 	private String picture;
 	private String rating;
 	private String name;
@@ -25,11 +25,13 @@ public class Profile extends JFrame {
 	JLabel label;
 	String s;
 	
-	Profile(){
+	Profile(){}
+	
+	public void showProfile(JFrame page){
 		
-	super("Upload/Update Picture");
-	 button = new JButton("Upload");
-	 button.setBounds(80, 300, 100, 40);
+		page.setTitle("Upload/Update Picture");
+		button = new JButton("Upload");
+		button.setBounds(350, 0, 100, 40);
 	 
 	 label = new JLabel();
 	 label.setBounds(10,10,300,550);
@@ -48,16 +50,16 @@ public class Profile extends JFrame {
 	             s = path;
 	              }
 	         else if(result == JFileChooser.CANCEL_OPTION){
-	             System.out.println("No Data");
+	             //System.out.println("No Data");
 	         }
 	     }
 	    });
-	    add(label);
-	    add(button);
-	    setLayout(null);
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    setSize(500,600);
-	    setVisible(true);
+	 	page.setLayout(null);
+	    page.add(label);
+	    page.add(button);
+	    page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    page.setSize(500,600);
+	    page.setVisible(true);
 	
 	}
 	 public ImageIcon ResizeImage(String imgPath){

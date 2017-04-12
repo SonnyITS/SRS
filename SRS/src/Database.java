@@ -104,8 +104,13 @@ public class Database {
 				break;
 			}    	
 		}
-		returnstr = driverDatabase[lookup].checkPassword(Password);
-		return returnstr;			
+		if (lookup == -1){
+			return false;
+		}
+		else{
+			returnstr = driverDatabase[lookup].checkPassword(Password);
+			return returnstr;	
+		}
 	}
 	
 	
@@ -117,9 +122,14 @@ public class Database {
 				break;
 				}    	
 			}
-		returnstr = riderDatabase[lookup].checkPassword(Password);			
-		lookup = -1;
-		return returnstr;
+		if(lookup == -1){
+			return false;
+		}
+		else{
+			returnstr = riderDatabase[lookup].checkPassword(Password);			
+			lookup = -1;
+			return returnstr;
+		}
 	}
 
 }
