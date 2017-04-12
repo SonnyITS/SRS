@@ -25,9 +25,9 @@ class Browser extends Region {
         getStyleClass().add("browser");
         
         // load the web page
-        ///webEngine.load("http://www.google.com/maps/place/" + _origLat + "," + _origLon);
+        webEngine.load("http://www.google.com/maps/place/" + _origLat + "," + _origLon);
         ///webEngine.load("http://maps.google.com");
-        webEngine.load("https://www.google.com/maps/dir/" + _origLat + "," + _origLon + "/" + _destLat + "," + _destLon + "/");
+        ///webEngine.load("https://www.google.com/maps/dir/" + _origLat + "," + _origLon + "/" + _destLat + "," + _destLon + "/");
         
         
         //add the web view to the scene
