@@ -30,7 +30,7 @@ public class User
 	
 
 	public boolean checkPassword(String pass){
-		if (pass == password){
+		if (pass.equals(password)){
 			return true;
 		}
 		else{

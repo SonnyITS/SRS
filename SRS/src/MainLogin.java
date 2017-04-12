@@ -25,19 +25,34 @@ public class MainLogin {
 	JPanel CreateUser2Page2;
 	JPanel CreateUser2Page3;
 	JPanel CreateUser2Page4;
-	JPanel CreateUser2Page5;	
+	JPanel CreateUser2Page5;
+	JPanel UserInterFace1;
+	JPanel UserInterFace2;
+	JPanel UserInterFace3;
+	JPanel UserInterFace4;
+	JPanel UserInterFace5;
 	JButton driverButton;
 	JButton riderButton;
 	JButton createButton;
 	JButton backButton;
 	JButton nextButton;
 	JButton nextButton2;
+	JButton nextButton3;
+	JButton nextButton4;
 	JLabel UserName;
+	JLabel tryAgain;
+	JLabel tryAgain2;
+	JLabel tryAgain3;
+	JLabel tryAgain4;
+	JLabel tryAgain5;
+	JLabel tryAgain6;
+	JLabel tryAgain7;
 	JLabel Password;
 	JLabel Email;
 	JLabel FName;
 	JLabel LName;
 	JLabel Phone;
+	JLabel userinterface;
 	JTextField UN;
 	JTextField EM;
 	JTextField FirstName;
@@ -50,6 +65,12 @@ public class MainLogin {
 	String newLastName;
 	String newEmail;
 	String newPhone;
+	String givenUN;
+	String givenPW;
+	Driver currentDriver;
+	Rider currentRider;
+	
+	private Database DB = new Database(); 
 
 	
 	static JFrame frame;
@@ -61,88 +82,42 @@ public class MainLogin {
 		login1.setSize(500, 600);
 		login1.setLocation(200, 100);
 		
-		MainLoginPage = new JPanel();
-		MainLoginPage.setSize(500, 200);
-		MainLoginPage.setLocation(0, 0);
-		
+		MainLoginPage = new JPanel();		
 		MainLoginPage2 = new JPanel();
-		MainLoginPage2.setSize(500, 200);
-		MainLoginPage2.setLocation(0, 200);
-
 		MainLoginPage3 = new JPanel();
-		MainLoginPage3.setSize(500, 200);
-		MainLoginPage3.setLocation(0, 400);
 
-		RiderLoginPage = new JPanel();
-		RiderLoginPage.setSize(500, 200);
-		RiderLoginPage.setLocation(0, 0);
-		
+		RiderLoginPage = new JPanel();		
 		RiderLoginPage2 = new JPanel();
-		RiderLoginPage2.setSize(500, 200);
-		RiderLoginPage2.setLocation(0, 200);
+		RiderLoginPage3 = new JPanel();		
 
-		RiderLoginPage3 = new JPanel();
-		RiderLoginPage3.setSize(500, 200);
-		RiderLoginPage3.setLocation(0, 400);
-		
 		DriverLoginPage = new JPanel();
-		DriverLoginPage.setSize(500, 200);
-		DriverLoginPage.setLocation(0, 0);
-
 		DriverLoginPage2 = new JPanel();
-		DriverLoginPage2.setSize(500, 200);
-		DriverLoginPage2.setLocation(0, 200);
-
 		DriverLoginPage3 = new JPanel();
-		DriverLoginPage3.setSize(500, 200);
-		DriverLoginPage3.setLocation(0, 400);
 
 		CreateUserPage = new JPanel();
-		CreateUserPage.setSize(500, 100);
-		CreateUserPage.setLocation(0, 0);
-		
 		CreateUserPage2 = new JPanel();
-		CreateUserPage2.setSize(500, 100);
-		CreateUserPage2.setLocation(0, 100);
-		
 		CreateUserPage3 = new JPanel();
-		CreateUserPage3.setSize(500, 100);
-		CreateUserPage3.setLocation(0, 200);
-
 		CreateUserPage4 = new JPanel();
-		CreateUserPage4.setSize(500, 100);
-		CreateUserPage4.setLocation(0, 300);
-		
 		CreateUserPage5 = new JPanel();
-		CreateUserPage5.setSize(500, 100);
-		CreateUserPage5.setLocation(0, 400);
-
-		CreateUser2Page = new JPanel();
-		CreateUser2Page.setSize(500, 100);
-		CreateUser2Page.setLocation(0, 0);
 		
+		CreateUser2Page = new JPanel();		
 		CreateUser2Page2 = new JPanel();
-		CreateUser2Page2.setSize(500, 100);
-		CreateUser2Page2.setLocation(0, 100);
-		
 		CreateUser2Page3 = new JPanel();
-		CreateUser2Page3.setSize(500, 100);
-		CreateUser2Page3.setLocation(0, 200);
-
 		CreateUser2Page4 = new JPanel();
-		CreateUser2Page4.setSize(500, 100);
-		CreateUser2Page4.setLocation(0, 300);
-		
 		CreateUser2Page5 = new JPanel();
-		CreateUser2Page5.setSize(500, 100);
-		CreateUser2Page5.setLocation(0, 400);
 		
+		UserInterFace1 = new JPanel();
+		UserInterFace2 = new JPanel();
+		UserInterFace3 = new JPanel();
+		UserInterFace4 = new JPanel();
+		UserInterFace5 = new JPanel();
+
 		driverButton = new JButton("Driver Login");
 		driverButton.setSize(150, 50);
 		driverButton.setLocation(10, 10);
 		driverButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createDriverLogin();
+				createDriverLogin(false);
 			}
 		});
 
@@ -151,7 +126,7 @@ public class MainLogin {
 		riderButton.setLocation(10, 60);
 		riderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createRiderLogin();
+				createRiderLogin(false);
 
 			}
 		});
@@ -177,6 +152,13 @@ public class MainLogin {
 				Pass.setText("");
 				phonetext.setText("");
 				UN.setText("");
+				CreateUserPage.remove(tryAgain3);
+				CreateUserPage2.remove(tryAgain4);
+				CreateUserPage3.remove(tryAgain);
+				CreateUserPage4.remove(tryAgain2);
+				CreateUser2Page.remove(tryAgain5);
+				CreateUser2Page.remove(tryAgain6);
+				DriverLoginPage3.remove(tryAgain7);
 				createMainLogin();
 			}
 		});
@@ -186,8 +168,7 @@ public class MainLogin {
 		nextButton.setLocation(10, 150);
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				printwhatisgiven();
-				createCreateNewUser2();
+				next1clicked();
 			}
 		});
 		
@@ -196,7 +177,25 @@ public class MainLogin {
 		nextButton2.setLocation(10, 150);
 		nextButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createDriverLogin();
+				next2clicked();
+			}
+		});
+		
+		nextButton3 = new JButton("Next");
+		nextButton3.setSize(150, 50);
+		nextButton3.setLocation(10, 150);
+		nextButton3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				next3clicked();
+			}
+		});
+
+		nextButton4 = new JButton("Next");
+		nextButton4.setSize(150, 50);
+		nextButton4.setLocation(10, 150);
+		nextButton4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				next4clicked();
 			}
 		});
 		
@@ -224,6 +223,39 @@ public class MainLogin {
 		Phone.setSize(100, 50);
 		Phone.setLocation(10, 110);
 
+		tryAgain = new JLabel("*The userName is taken or invalid. Please try again.");
+		tryAgain.setSize(100, 50);
+		tryAgain.setLocation(10, 110);
+		
+		tryAgain2 = new JLabel("*Please enter valid password. Enter Something!");
+		tryAgain2.setSize(100, 50);
+		tryAgain2.setLocation(10, 110);
+		
+		tryAgain3 = new JLabel("*Please Enter Something for first name!");
+		tryAgain3.setSize(100, 50);
+		tryAgain3.setLocation(10, 110);
+
+		tryAgain4 = new JLabel("*Please Enter Something for Last name!");
+		tryAgain4.setSize(100, 50);
+		tryAgain4.setLocation(10, 110);
+
+		tryAgain5 = new JLabel("*Please Enter Something for email!");
+		tryAgain5.setSize(100, 50);
+		tryAgain5.setLocation(10, 110);
+
+		tryAgain6 = new JLabel("*Please Enter Something for phone!");
+		tryAgain6.setSize(100, 50);
+		tryAgain6.setLocation(10, 110);
+
+		tryAgain7 = new JLabel("**Please Enter valid username and Password**");
+		tryAgain7.setSize(100, 50);
+		tryAgain7.setLocation(10, 110);
+		
+		userinterface = new JLabel("Userinterface Page");
+		userinterface.setSize(100, 50);
+		userinterface.setLocation(10, 110);
+
+				
 		UN = new JTextField(20);
 		UN.setSize(150, 50);
 		UN.setLocation(100, 10);
@@ -253,7 +285,7 @@ public class MainLogin {
 		
 	}
 	
-	private void createRiderLogin(){
+	private void createRiderLogin(boolean error){
 		
 		login1.setTitle("Rider Login");
 		RiderLoginPage.add(UserName);
@@ -261,7 +293,11 @@ public class MainLogin {
 		RiderLoginPage2.add(Password);
 		RiderLoginPage2.add(Pass);
 		RiderLoginPage3.add(backButton);
-		setAllInvisible();
+		RiderLoginPage3.add(nextButton4);
+		if(error){
+			RiderLoginPage3.add(tryAgain7);
+			}
+		setToDefaults();
 		RiderLoginPage.setVisible(true);
 		RiderLoginPage2.setVisible(true);
 		RiderLoginPage3.setVisible(true);
@@ -271,7 +307,7 @@ public class MainLogin {
 
 	}
 	
-	private void createDriverLogin(){
+	private void createDriverLogin(boolean error){
 		
 		login1.setTitle("Driver Login");
 		DriverLoginPage.add(UserName);
@@ -279,7 +315,12 @@ public class MainLogin {
 		DriverLoginPage2.add(Password);
 		DriverLoginPage2.add(Pass);
 		DriverLoginPage3.add(backButton);
-		setAllInvisible();
+		DriverLoginPage3.add(nextButton3);
+		if(error){
+			DriverLoginPage3.add(tryAgain7);
+			}
+		
+		setToDefaults();
 		DriverLoginPage.setVisible(true);
 		DriverLoginPage2.setVisible(true);
 		DriverLoginPage3.setVisible(true);
@@ -296,7 +337,7 @@ public class MainLogin {
 		MainLoginPage.add(driverButton);
 		MainLoginPage2.add(riderButton);
 		MainLoginPage3.add(createButton);
-		setAllInvisible();
+		setToDefaults();
 		MainLoginPage.setVisible(true);
 		MainLoginPage2.setVisible(true);
 		MainLoginPage3.setVisible(true);
@@ -307,6 +348,7 @@ public class MainLogin {
 	}
 	
 	private void createCreateNewUser(){
+
 		
 		login1.setTitle("Create New User");
 		CreateUserPage.add(FName);
@@ -319,7 +361,7 @@ public class MainLogin {
 		CreateUserPage4.add(Pass);
 		CreateUserPage5.add(backButton);
 		CreateUserPage5.add(nextButton);
-		setAllInvisible();
+		setToDefaults();
 		CreateUserPage.setVisible(true);
 		CreateUserPage2.setVisible(true);
 		CreateUserPage3.setVisible(true);
@@ -331,35 +373,145 @@ public class MainLogin {
 		login1.add(CreateUserPage4);
 		login1.add(CreateUserPage5);
 		
+	}
 
+	private void createCreateNewUserUNT(){
+
+		login1.setTitle("Create New User");
+		CreateUserPage.add(FName);
+		CreateUserPage.add(FirstName);
+		CreateUserPage.add(tryAgain3);
+		CreateUserPage2.add(LName);
+		CreateUserPage2.add(LastName);
+		CreateUserPage2.add(tryAgain4);
+		CreateUserPage3.add(UserName);
+		CreateUserPage3.add(UN);
+		CreateUserPage3.add(tryAgain);	
+		CreateUserPage4.add(Password);
+		CreateUserPage4.add(Pass);
+		CreateUserPage4.add(tryAgain2);
+		CreateUserPage5.add(backButton);
+		CreateUserPage5.add(nextButton);
+		setToDefaults();
+		CreateUserPage.setVisible(true);
+		CreateUserPage2.setVisible(true);
+		CreateUserPage3.setVisible(true);
+		CreateUserPage4.setVisible(true);
+		CreateUserPage5.setVisible(true);
+		login1.add(CreateUserPage);
+		login1.add(CreateUserPage2);
+		login1.add(CreateUserPage3);
+		login1.add(CreateUserPage4);
+		login1.add(CreateUserPage5);
 		
 	}
 	
-	private void printwhatisgiven(){
+	private void createCreateNewUserES(){
+		
+		login1.setTitle("Create New User");
+		CreateUserPage.add(FName);
+		CreateUserPage.add(FirstName);
+		CreateUserPage2.add(LName);
+		CreateUserPage2.add(LastName);
+		CreateUserPage3.add(UserName);
+		CreateUserPage3.add(UN);
+		CreateUserPage3.add(tryAgain);	
+		CreateUserPage4.add(Password);
+		CreateUserPage4.add(Pass);
+		CreateUserPage4.add(tryAgain2);
+		CreateUserPage5.add(backButton);
+		CreateUserPage5.add(nextButton);
+		setToDefaults();
+		CreateUserPage.setVisible(true);
+		CreateUserPage2.setVisible(true);
+		CreateUserPage3.setVisible(true);
+		CreateUserPage4.setVisible(true);
+		CreateUserPage5.setVisible(true);
+		login1.add(CreateUserPage);
+		login1.add(CreateUserPage2);
+		login1.add(CreateUserPage3);
+		login1.add(CreateUserPage4);
+		login1.add(CreateUserPage5);
+		
+	}
+	
+	private void next1clicked(){
 		
 		newFirstName = FirstName.getText();
 		newLastName = LastName.getText();
 		newUsername = UN.getText();
 		newPassword = Pass.getText();
-		System.out.println(newFirstName);
-		System.out.println(newLastName);
+		if (newFirstName.isEmpty() || newLastName.isEmpty() || newUsername.isEmpty() || newPassword.isEmpty()){
+			createCreateNewUserES();
+		}
+		if (DB.userNameNotTaken(newUsername)){
+			createCreateNewUser2();
+		}
+		else{
+			createCreateNewUserUNT();
+		}	
+	}
+
+	private void next2clicked(){
+		
+		newEmail = EM.getText();
+		newPhone = phonetext.getText();
+		if (newEmail.isEmpty() || newPhone.isEmpty()){
+			createCreateNewUser2ES();
+		}
+		else{
+			DB.addUser(newUsername, newPassword, newEmail, newPhone, "driver");
+			createUserInterFace();
+		}	
+	}
+	
+	public void next3clicked(){
+		
+		givenUN = UN.getText();
+		givenPW = Pass.getText();
+		if(DB.authentic(givenUN, givenPW, "driver")){
+			currentDriver = DB.getDriver(givenUN);
+			createUserInterFace();
+		}
+		else{
+			createDriverLogin(true);
+		}
+		
 		
 	}
 	
-	private void createCreateNewUser2(){
+	
+	public void next4clicked(){
+		
+		givenUN = UN.getText();
+		givenPW = Pass.getText();
+		if(DB.authentic(givenUN, givenPW, "rider")){
+			currentRider = DB.getRider(givenUN);
+			createUserInterFace();
+		}
+		else{
+			createRiderLogin(true);
+		}		
+		
+	}
+	
+	
+	private void createCreateNewUser2ES(){
 		
 		login1.setTitle("Create New User Part 2");
 		CreateUser2Page.add(Email);
 		CreateUser2Page.add(EM);
+		CreateUser2Page.add(tryAgain5);
 		CreateUser2Page2.add(Phone);
 		CreateUser2Page2.add(phonetext);
+		CreateUser2Page.add(tryAgain6);
 //		CreateUser2Page3.add(UserName);
 //		CreateUser2Page3.add(UN);
 //		CreateUser2Page4.add(Password);
 //		CreateUser2Page4.add(Pass);
 		CreateUser2Page5.add(backButton);
 		CreateUser2Page5.add(nextButton2);
-		setAllInvisible();
+		setToDefaults();
 		CreateUser2Page.setVisible(true);
 		CreateUser2Page2.setVisible(true);
 		CreateUser2Page3.setVisible(true);
@@ -375,8 +527,49 @@ public class MainLogin {
 	}
 
 	
+	private void createCreateNewUser2(){
+		
+		login1.setTitle("Create New User Part 2");
+		CreateUser2Page.add(Email);
+		CreateUser2Page.add(EM);
+		CreateUser2Page2.add(Phone);
+		CreateUser2Page2.add(phonetext);
+//		CreateUser2Page3.add(UserName);
+//		CreateUser2Page3.add(UN);
+//		CreateUser2Page4.add(Password);
+//		CreateUser2Page4.add(Pass);
+		CreateUser2Page5.add(backButton);
+		CreateUser2Page5.add(nextButton2);
+		setToDefaults();
+		CreateUser2Page.setVisible(true);
+		CreateUser2Page2.setVisible(true);
+		CreateUser2Page3.setVisible(true);
+		CreateUser2Page4.setVisible(true);
+		CreateUser2Page5.setVisible(true);
+		login1.add(CreateUser2Page);
+		login1.add(CreateUser2Page2);
+		login1.add(CreateUser2Page3);
+		login1.add(CreateUser2Page4);
+		login1.add(CreateUser2Page5);
+		
+		
+	}
 	
-	public void setAllInvisible(){
+	public void createUserInterFace(){
+		
+		login1.setTitle("UserInterFace");
+
+		
+		
+		setToDefaults();
+		UserInterFace1.add(userinterface);
+		login1.add(UserInterFace1);
+		
+		
+		
+	}
+	
+	public void setToDefaults(){
 	
 		MainLoginPage.setVisible(false);
 		MainLoginPage2.setVisible(false);
@@ -398,6 +591,62 @@ public class MainLogin {
 		CreateUser2Page4.setVisible(false);
 		CreateUser2Page5.setVisible(false);
 
+		MainLoginPage.setSize(500, 200);
+		MainLoginPage.setLocation(0, 0);
+		MainLoginPage2.setSize(500, 200);
+		MainLoginPage2.setLocation(0, 200);
+		MainLoginPage3.setSize(500, 200);
+		MainLoginPage3.setLocation(0, 400);
+
+		RiderLoginPage.setSize(500, 200);
+		RiderLoginPage.setLocation(0, 0);		
+		RiderLoginPage2.setSize(500, 200);
+		RiderLoginPage2.setLocation(0, 200);
+		RiderLoginPage3.setSize(500, 200);
+		RiderLoginPage3.setLocation(0, 400);		
+
+		DriverLoginPage.setSize(500, 200);
+		DriverLoginPage.setLocation(0, 0);
+		DriverLoginPage2.setSize(500, 200);
+		DriverLoginPage2.setLocation(0, 200);
+		DriverLoginPage3.setSize(500, 200);
+		DriverLoginPage3.setLocation(0, 400);
+
+		CreateUserPage.setSize(500, 100);
+		CreateUserPage.setLocation(0, 0);		
+		CreateUserPage2.setSize(500, 100);
+		CreateUserPage2.setLocation(0, 100);		
+		CreateUserPage3.setSize(500, 100);
+		CreateUserPage3.setLocation(0, 200);		
+		CreateUserPage4.setSize(500, 100);
+		CreateUserPage4.setLocation(0, 300);		
+		CreateUserPage5.setSize(500, 100);
+		CreateUserPage5.setLocation(0, 400);
+		
+		CreateUser2Page.setSize(500, 100);
+		CreateUser2Page.setLocation(0, 0);
+		CreateUser2Page2.setSize(500, 100);
+		CreateUser2Page2.setLocation(0, 100);		
+		CreateUser2Page3.setSize(500, 100);
+		CreateUser2Page3.setLocation(0, 200);
+		CreateUser2Page4.setSize(500, 100);
+		CreateUser2Page4.setLocation(0, 300);		
+		CreateUser2Page5.setSize(500, 100);
+		CreateUser2Page5.setLocation(0, 400);
+		
+		UserInterFace1.setSize(500, 100);
+		UserInterFace1.setLocation(0, 0);
+		UserInterFace2.setSize(500, 100);
+		UserInterFace2.setLocation(0, 100);
+		UserInterFace3.setSize(500, 100);
+		UserInterFace3.setLocation(0, 200);
+		UserInterFace4.setSize(500, 100);
+		UserInterFace4.setLocation(0, 300);
+		UserInterFace5.setSize(500, 100);
+		UserInterFace5.setLocation(0, 400);
+		
+
+		
 	}
 
 }
