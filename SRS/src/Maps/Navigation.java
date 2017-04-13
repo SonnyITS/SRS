@@ -1,31 +1,25 @@
 package Maps;
+import java.util.Scanner;
+
 import javafx.application.Application;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 
 
  
  
+@SuppressWarnings("restriction")
 public class Navigation extends Application {
 	
-	private static double _lat;
-	private static double _lon;
+	static Scanner kbd = new Scanner(System.in);
 	
 	
     private Scene scene;
     @Override public void start(Stage stage) {
         // create the scene
-        stage.setTitle("Web View");
+        stage.setTitle("Maps");
         scene = new Scene(new Browser(),750,500, Color.web("#666970"));
         stage.setScene(scene);
         ///scene.getStylesheets().add("webviewsample/BrowserToolbar.css");        
@@ -35,20 +29,34 @@ public class Navigation extends Application {
         ///System.out.println(_lon);
     }
     
-    public static void main(double lat , double lon){
+    public static void main(){
     	
-    	Browser.setOrigLat(lat);
-    	Browser.setOrigLon(lon);
+    	double origLat = kbd.nextDouble();
+    	double origLon = kbd.nextDouble();
+    	
+    	Browser.setOrigLat(origLat);
+    	Browser.setOrigLon(origLon);
+    	
+    	Browser.setChoice(1);
     	
         launch();
     }
     
-    public static void main(String[] args , double origLat , double origLon , double destLat , double destLon){
+    public static void main(double destLat , double destLon){
     	
-    	//Browser.setLat(lat);
-    	//Browser.setLon(lon);
+    	double origLat = kbd.nextDouble();
+    	double origLon = kbd.nextDouble();
+    	///double destLat = kbd.nextDouble();
+    	///double destLon = kbd.nextDouble();
     	
-        launch(args);
+    	Browser.setOrigLat(origLat);
+    	Browser.setOrigLon(origLon);
+    	Browser.setDestLat(destLat);
+    	Browser.setDestLon(destLon);
+    	
+    	Browser.setChoice(2);
+    	
+        launch();
     }
  
     

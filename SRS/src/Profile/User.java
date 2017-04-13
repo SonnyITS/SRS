@@ -1,3 +1,4 @@
+package Profile;
 
 public class User 
 {

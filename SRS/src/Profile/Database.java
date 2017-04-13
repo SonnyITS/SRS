@@ -1,3 +1,4 @@
+package Profile;
 
 public class Database {
 	private String usernameDDatabase[] = new String[100];

@@ -1,3 +1,4 @@
+package Profile;
 import javax.swing.*;
 
 import Maps.*;
