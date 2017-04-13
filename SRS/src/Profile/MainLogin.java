@@ -81,7 +81,7 @@ public class MainLogin {
 	
 	static JFrame frame;
 	
-	MainLogin(){
+	public MainLogin(){
 		
 		login1 = new JFrame("Login Choices");
 		login1.setLayout(null);
