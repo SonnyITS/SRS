@@ -213,7 +213,7 @@ public class MainLogin {
 			public void actionPerformed(ActionEvent e) {
 				//createCreateNewUser();
 				// go to map
-				Navigation.main((double)42.0 , (double)-71.5);
+				Navigation.main();
 			}
 		});
 		
