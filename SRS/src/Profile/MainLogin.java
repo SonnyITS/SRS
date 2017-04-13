@@ -7,6 +7,7 @@ import Maps.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MainLogin {
 	JFrame login1;
@@ -43,6 +44,7 @@ public class MainLogin {
 	JButton nextButton3;
 	JButton nextButton4;
 	JButton mapButton;
+	JButton mapOverviewButton;
 	JButton profileButton;
 	JLabel UserName;
 	JLabel tryAgain;
@@ -217,6 +219,18 @@ public class MainLogin {
 			}
 		});
 		
+		mapOverviewButton = new JButton("Overview Map");
+		mapOverviewButton.setSize(250, 50);
+		mapOverviewButton.setLocation(60, 110);
+		mapOverviewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+					Map.map();
+				
+			}
+		});
+		
 		profileButton = new JButton("Profile");
 		profileButton.setSize(150, 50);
 		profileButton.setLocation(10, 110);
@@ -316,7 +330,6 @@ public class MainLogin {
 	
 	private void createRiderLogin(boolean error){
 		
-		login1.setTitle("Rider Login");
 		RiderLoginPage.add(UserName);
 		RiderLoginPage.add(UN);
 		RiderLoginPage2.add(Password);
@@ -590,7 +603,8 @@ public class MainLogin {
 		login1.setTitle("UserInterFace");
 		UserInterFace1.add(userinterface);
 		UserInterFace4.add(profileButton);
-		UserInterFace5.add(mapButton);		
+		UserInterFace5.add(mapButton);
+		UserInterFace5.add(mapOverviewButton);
 		setToDefaults();
 		UserInterFace1.setVisible(true);
 		UserInterFace2.setVisible(true);

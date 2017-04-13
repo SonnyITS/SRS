@@ -43,4 +43,14 @@ public class User
 		return profile;
 	}
 
+	public double getLat() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getLon() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

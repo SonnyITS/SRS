@@ -1,4 +1,6 @@
 package Maps;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,13 +21,17 @@ public class Map {
 	static double latitude;
 	static double longitude;
 	
-	public static void map() throws IOException {
+	public static void map()  {
 		JFrame test = new JFrame("Google Maps");
 		
 		try {
-			latitude = kbd.nextDouble();
-			longitude = kbd.nextDouble();
-			int zoom = 13;
+			
+			latitude = 41.806613;
+			longitude = -72.252975;
+			
+			///latitude = kbd.nextDouble();
+			///longitude = kbd.nextDouble();
+			int zoom = 15;
 			
 			String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude
 					+ "&zoom=" + zoom + "&size=612x612&scale=2&maptype=roadmap";
@@ -57,9 +63,16 @@ public class Map {
 		b1.setBorder(new RoundedBorder(10));
 		b1.setLocation(0, 0);
 		///b1.setVisible(true);
+		b1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Navigation.main(41.814346, -72.261344);
+			}
+		});
 		
 		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 612, 612);
+		p1.setBounds(-180, 50, 612, 612);
+		///p1.setLayout(null);
 		///p1.setVisible(true);
 		p1.setOpaque(false);
 		

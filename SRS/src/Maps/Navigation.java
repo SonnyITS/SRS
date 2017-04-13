@@ -15,6 +15,9 @@ public class Navigation extends Application {
 	
 	static Scanner kbd = new Scanner(System.in);
 	
+	static double origLat = 41.806613;
+	static double origLon = -72.252975;
+	
 	
     private Scene scene;
     @Override public void start(Stage stage) {
@@ -31,8 +34,10 @@ public class Navigation extends Application {
     
     public static void main(){
     	
-    	double origLat = kbd.nextDouble();
-    	double origLon = kbd.nextDouble();
+    	System.out.println("Substitue for GPS Cordinates");
+    	
+    	///double origLat = kbd.nextDouble();
+    	///double origLon = kbd.nextDouble();
     	
     	Browser.setOrigLat(origLat);
     	Browser.setOrigLon(origLon);
@@ -44,8 +49,10 @@ public class Navigation extends Application {
     
     public static void main(double destLat , double destLon){
     	
-    	double origLat = kbd.nextDouble();
-    	double origLon = kbd.nextDouble();
+    	System.out.println("Substitue for GPS Cordinates");
+    	
+    	///double origLat = kbd.nextDouble();
+    	///double origLon = kbd.nextDouble();
     	///double destLat = kbd.nextDouble();
     	///double destLon = kbd.nextDouble();
     	

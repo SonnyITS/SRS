@@ -22,5 +22,7 @@ public class Rider extends User {
 	public String getDestination() {
 		return "it works";
 	}
+	
+	
 
 }

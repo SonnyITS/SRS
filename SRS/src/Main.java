@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
-		 MainLogin m1 = new MainLogin();
+		MainLogin m1 = new MainLogin();
 		//Profile p = new Profile();
 		
 		///Navigation.main(41.809651, -72.270512);
